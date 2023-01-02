@@ -3,11 +3,11 @@ package com.mtdagar.marvelcharacters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mtdagar.marvelcharacters.data.model.MarvelCharactersResponse
 import com.mtdagar.marvelcharacters.data.model.Result
 import com.mtdagar.marvelcharacters.databinding.CharacterItemBinding
 
-class CharacterAdapter(var charactersResponse: MarvelCharactersResponse) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+
+class CharacterAdapter(var characters: List<Result>) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     inner class CharacterViewHolder (private val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(character: Result) {
@@ -23,18 +23,18 @@ class CharacterAdapter(var charactersResponse: MarvelCharactersResponse) : Recyc
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val currentItem = charactersResponse.data.results[position]
+        val currentItem = characters[position]
         if (currentItem != null) {
             holder.bind(currentItem)
         }
     }
 
     override fun getItemCount(): Int {
-        return charactersResponse.data.results.size
+        return characters.size
     }
 
-    public fun setData(data: MarvelCharactersResponse) {
-        charactersResponse = data
+    public fun setData(data: List<Result>) {
+        characters = data
         notifyDataSetChanged()
     }
 

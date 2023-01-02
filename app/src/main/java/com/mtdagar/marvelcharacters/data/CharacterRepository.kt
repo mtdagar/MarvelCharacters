@@ -30,21 +30,6 @@ class CharacterRepository @Inject constructor(
             db.withTransaction {
                 characterDao.deleteAllCharacters()
                 characters.data?.results?.let { characterDao.insertCharacters(it) }
-                //todo find an alternate to this enque shit man
-//                characters.enqueue(object : Callback<MarvelCharactersResponse> {
-//                    override fun onResponse(
-//                        call: Call<MarvelCharactersResponse>,
-//                        response: Response<MarvelCharactersResponse>
-//                    ) {
-//                        Log.i("MainActivity", response.toString())
-//                        response.body()?.data?.results?.let { characterDao.insertCharacters(it) }
-//                    }
-//
-//                    override fun onFailure(call: Call<MarvelCharactersResponse>, t: Throwable) {
-//                        Log.i("MainActivity", t.message ?: "null message")
-//                    }
-//                })
-
             }
         }
     )
