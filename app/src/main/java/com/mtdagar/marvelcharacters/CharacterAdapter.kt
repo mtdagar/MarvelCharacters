@@ -57,8 +57,29 @@ class CharacterAdapter(
         return characters.size
     }
 
-    public fun setData(data: List<Result>) {
+    fun setData(data: List<Result>) {
         characters = data
+        notifyDataSetChanged()
+    }
+
+    fun sortAZ() {
+        characters = characters.sortedBy { it.name }
+        notifyDataSetChanged()
+    }
+
+    fun sortZA() {
+        characters = characters.sortedByDescending { it.name }
+        notifyDataSetChanged()
+    }
+
+
+    fun sortViewsAsc() {
+        characters = characters.sortedBy { it.viewCount }
+        notifyDataSetChanged()
+    }
+
+    fun sortViewsDesc() {
+        characters = characters.sortedByDescending { it.viewCount }
         notifyDataSetChanged()
     }
 

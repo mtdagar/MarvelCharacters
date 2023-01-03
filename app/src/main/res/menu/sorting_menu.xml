@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_a_to_z"
+        android:title="A -> Z" />
+    <item
+        android:id="@+id/menu_z_to_a"
+        android:title="Z -> A" />
+    <item
+        android:id="@+id/menu_views_asc"
+        android:title="View Count Ascending" />
+    <item
+        android:id="@+id/menu_views_desc"
+        android:title="View Count Descending" />
+</menu>

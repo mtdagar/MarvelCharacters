@@ -1,17 +1,22 @@
 package com.mtdagar.marvelcharacters
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.mtdagar.marvelcharacters.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var homeFragment: CharacterListFragment? = null
 
-    //private val viewModel: MainActivityViewModel by viewModels()
+    private val characterListViewModel: CharacterListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,25 +25,25 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
 
-//        var characterAdapter: CharacterAdapter?
-//
-//        viewModel.characters.observe(this@MainActivity) { result ->
-//            characterAdapter = result.data?.let { characters -> CharacterAdapter(characters) }
-//
-//            binding.apply {
-//                characterRecyclerView.apply {
-//                    adapter = characterAdapter
-//                    layoutManager = LinearLayoutManager(this@MainActivity)
-//                }
-//            }
-//
-//            binding.progressBar.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
-//            binding.textViewError.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
-//            binding.textViewError.text = result.error?.localizedMessage
-//
-//        }
+        homeFragment = navHostFragment.childFragmentManager.fragments[0] as CharacterListFragment
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.sorting_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.menu_a_to_z -> homeFragment?.sortAZ()
+            R.id.menu_z_to_a -> homeFragment?.sortZA()
+            R.id.menu_views_asc -> homeFragment?.sortViewAsc()
+            R.id.menu_views_desc -> homeFragment?.sortViewDesc()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
