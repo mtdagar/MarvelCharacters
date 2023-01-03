@@ -39,10 +39,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     def room_version = "2.4.3"
 
     implementation 'androidx.core:core-ktx:1.9.0'
@@ -53,6 +49,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+    // Navigation Component
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
@@ -60,7 +62,6 @@ dependencies {
     // Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
-    //implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
 
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
 
@@ -78,18 +79,10 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.10.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
 
-
-
-    implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
-
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
-    debugImplementation "com.github.chuckerteam.chucker:library:3.4.0"
-    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.4.0"
-
-
+    //Glide
     implementation 'com.github.bumptech.glide:glide:4.14.2'
 
+    //For bottom fade on image view
     implementation 'com.github.bosphere.android-fadingedgelayout:fadingedgelayout:1.0.0'
 
 }
