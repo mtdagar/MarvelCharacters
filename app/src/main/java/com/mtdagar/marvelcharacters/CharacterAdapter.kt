@@ -2,6 +2,7 @@ package com.mtdagar.marvelcharacters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mtdagar.marvelcharacters.data.model.Result
@@ -13,12 +14,24 @@ class CharacterAdapter(var characters: List<Result>) : RecyclerView.Adapter<Char
     inner class CharacterViewHolder (private val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(character: Result) {
             binding.apply {
+                val imageUrl = character.thumbnail.path + "." + character.thumbnail.extension
                 Glide.with(binding.root.context)
-                    .load(character.thumbnail.path + "." + character.thumbnail.extension)
+                    .load(imageUrl)
                     .into(characterImage)
 
                 characterName.text = character.name
+
+                itemView.setOnClickListener {
+                    val navController = Navigation.findNavController(itemView)
+                    val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
+                        character.name,
+                        imageUrl
+                    )
+                    navController.navigate(action)
+                }
+
             }
+
         }
     }
 
