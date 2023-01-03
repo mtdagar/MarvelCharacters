@@ -13,16 +13,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+/**
+ * AppModule class to provide API client and database instance as singletons
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-//    @Singleton
-//    @Provides
-//    fun provideMarvelRepository(
-//        api: MarvelApi
-//    ) = MarvelRepository(api)
-
 
     @Singleton
     @Provides

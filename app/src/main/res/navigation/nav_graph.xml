@@ -7,16 +7,20 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="com.mtdagar.marvelcharacters.CharacterListFragment"
+        android:name="com.mtdagar.marvelcharacters.ui.CharacterListFragment"
         android:label="fragment_character_list"
         tools:layout="@layout/fragment_character_list" >
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
-            app:destination="@id/characterDetailFragment" />
+            app:destination="@id/characterDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="com.mtdagar.marvelcharacters.CharacterDetailFragment"
+        android:name="com.mtdagar.marvelcharacters.ui.CharacterDetailFragment"
         android:label="fragment_character_detail"
         tools:layout="@layout/fragment_character_detail" >
         <argument
@@ -25,5 +29,9 @@
         <argument
             android:name="image_url"
             app:argType="string" />
+        <argument
+            android:name="character_desc"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

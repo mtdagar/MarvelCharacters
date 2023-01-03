@@ -2,6 +2,11 @@ package com.mtdagar.marvelcharacters.util
 
 import kotlinx.coroutines.flow.*
 
+
+/**
+ * Manages data flow and decides data source (network or database)
+ * Takes in a data type and returns the desired result in the form of a flow
+ */
 inline fun <ResultType, RequestType> networkBoundResource(
     crossinline query: () -> Flow<ResultType>,
     crossinline fetch: suspend () -> RequestType,

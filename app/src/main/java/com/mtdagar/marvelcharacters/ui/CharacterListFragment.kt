@@ -1,4 +1,4 @@
-package com.mtdagar.marvelcharacters
+package com.mtdagar.marvelcharacters.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mtdagar.marvelcharacters.databinding.FragmentCharacterListBinding
 import com.mtdagar.marvelcharacters.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,25 +32,6 @@ class CharacterListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//
-//
-//        lifecycleScope.launch {
-//            viewModel.stateFlow.collect{ result ->
-//                characterAdapter = result.data?.let { characters -> CharacterAdapter(viewModel, characters) }
-//
-//                binding.apply {
-//                    characterRecyclerView.apply {
-//                        adapter = characterAdapter
-//                        layoutManager = LinearLayoutManager(context)
-//                    }
-//                }
-//
-//                binding.progressBar.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
-//                binding.textViewError.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
-//                binding.textViewError.text = result.error?.localizedMessage
-//            }
-//        }
-
 
         viewModel.characters.observe(viewLifecycleOwner) { result ->
             characterAdapter = result.data?.let { characters -> CharacterAdapter(viewModel, characters) }
@@ -58,7 +39,7 @@ class CharacterListFragment : Fragment() {
             binding.apply {
                 characterRecyclerView.apply {
                     adapter = characterAdapter
-                    layoutManager = LinearLayoutManager(context)
+                    layoutManager = GridLayoutManager(context,2)
                 }
             }
 
@@ -67,8 +48,6 @@ class CharacterListFragment : Fragment() {
             binding.textViewError.text = result.error?.localizedMessage
 
         }
-
-
     }
 
     fun sortAZ() {

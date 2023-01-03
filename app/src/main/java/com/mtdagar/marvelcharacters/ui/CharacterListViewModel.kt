@@ -1,4 +1,4 @@
-package com.mtdagar.marvelcharacters
+package com.mtdagar.marvelcharacters.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

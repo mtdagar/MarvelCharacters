@@ -1,10 +1,11 @@
-package com.mtdagar.marvelcharacters
+package com.mtdagar.marvelcharacters.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mtdagar.marvelcharacters.data.model.Result
 import com.mtdagar.marvelcharacters.databinding.CharacterItemBinding
 
@@ -20,6 +21,8 @@ class CharacterAdapter(
                 val imageUrl = character.thumbnail.path + "." + character.thumbnail.extension
                 Glide.with(binding.root.context)
                     .load(imageUrl)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade(200))
                     .into(characterImage)
 
                 characterName.text = character.name
@@ -30,14 +33,13 @@ class CharacterAdapter(
                     val navController = Navigation.findNavController(itemView)
                     val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
                         character.name,
-                        imageUrl
+                        imageUrl,
+                        character.description
                     )
                     navController.navigate(action)
                     notifyItemChanged(characters.indexOf(character))
                 }
-
             }
-
         }
     }
 

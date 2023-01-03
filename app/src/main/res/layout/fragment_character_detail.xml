@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".CharacterDetailFragment">
+    tools:context=".ui.CharacterDetailFragment"
+    android:background="@color/black"
+    >
 
     <ImageView
         android:id="@+id/character_banner_image"
@@ -22,8 +24,21 @@
         app:layout_constraintTop_toBottomOf="@id/character_banner_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_horizontal"
         android:layout_marginTop="24dp"
+        android:textColor="@color/white"
         android:textSize="28sp"
+        />
+
+    <TextView
+        android:id="@+id/character_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/lightest_gray"
+        app:layout_constraintTop_toBottomOf="@id/character_name"
+        android:layout_margin="22dp"
+        android:gravity="center_horizontal"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

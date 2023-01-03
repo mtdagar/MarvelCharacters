@@ -6,6 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+* API Client class. All API endpoints are defined here.
+ */
+
 interface MarvelApi {
 
     companion object {

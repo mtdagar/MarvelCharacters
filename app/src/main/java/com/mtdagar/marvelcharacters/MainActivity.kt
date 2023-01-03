@@ -7,6 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.mtdagar.marvelcharacters.databinding.ActivityMainBinding
+import com.mtdagar.marvelcharacters.ui.CharacterListFragment
+import com.mtdagar.marvelcharacters.ui.CharacterListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -35,8 +37,8 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    //options menu for filtering the list
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.menu_a_to_z -> homeFragment?.sortAZ()
             R.id.menu_z_to_a -> homeFragment?.sortZA()
