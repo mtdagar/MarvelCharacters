@@ -12,6 +12,11 @@ import com.mtdagar.marvelcharacters.ui.CharacterListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
+/**
+ * Made by Meet Dagar
+ * 01/03/22
+ */
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
