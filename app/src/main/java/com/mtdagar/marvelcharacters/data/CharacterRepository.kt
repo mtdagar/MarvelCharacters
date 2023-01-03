@@ -4,7 +4,6 @@ import androidx.room.withTransaction
 import com.mtdagar.marvelcharacters.data.local.CharactersDatabase
 import com.mtdagar.marvelcharacters.network.MarvelApi
 import com.mtdagar.marvelcharacters.util.networkBoundResource
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(
@@ -19,7 +18,6 @@ class CharacterRepository @Inject constructor(
             characterDao.getAllCharacters()
         },
         fetch = {
-            delay(2000)
             api.getCharacters(
                 "1",
                 "1b353f979d2861d08eeb67a2fbbd5368",
@@ -31,7 +29,14 @@ class CharacterRepository @Inject constructor(
                 characterDao.deleteAllCharacters()
                 characters.data?.results?.let { characterDao.insertCharacters(it) }
             }
+        },
+        shouldFetch = { data ->
+            data.isEmpty()
         }
     )
+
+    suspend fun incrementViewCount(id: Int) {
+        characterDao.incrementViewCount(id)
+    }
 
 }

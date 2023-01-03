@@ -33,7 +33,7 @@ class CharacterListFragment : Fragment() {
         var characterAdapter: CharacterAdapter?
 
         viewModel.characters.observe(viewLifecycleOwner) { result ->
-            characterAdapter = result.data?.let { characters -> CharacterAdapter(characters) }
+            characterAdapter = result.data?.let { characters -> CharacterAdapter(viewModel, characters) }
 
             binding.apply {
                 characterRecyclerView.apply {

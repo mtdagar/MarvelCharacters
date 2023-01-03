@@ -9,7 +9,10 @@ import com.mtdagar.marvelcharacters.data.model.Result
 import com.mtdagar.marvelcharacters.databinding.CharacterItemBinding
 
 
-class CharacterAdapter(var characters: List<Result>) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharacterAdapter(
+    val characterListViewModel: CharacterListViewModel,
+    var characters: List<Result>
+    ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     inner class CharacterViewHolder (private val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(character: Result) {
@@ -20,14 +23,17 @@ class CharacterAdapter(var characters: List<Result>) : RecyclerView.Adapter<Char
                     .into(characterImage)
 
                 characterName.text = character.name
+                viewCount.text = character.viewCount.toString()
 
                 itemView.setOnClickListener {
+                    characterListViewModel.incrementItemViewCount(character.id)
                     val navController = Navigation.findNavController(itemView)
                     val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
                         character.name,
                         imageUrl
                     )
                     navController.navigate(action)
+                    notifyItemChanged(characters.indexOf(character))
                 }
 
             }

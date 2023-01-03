@@ -24,5 +24,6 @@ data class Result(
     @TypeConverters(ResultsConverter::class)
     val thumbnail: Thumbnail,
     @TypeConverters(ResultsConverter::class)
-    val urls: List<Url>
+    val urls: List<Url>,
+    val viewCount: Int = 0
 )
